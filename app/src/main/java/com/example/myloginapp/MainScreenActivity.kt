@@ -24,15 +24,8 @@ class MainScreenActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Image(
-                painter = painterResource(id = R.drawable.snoopy), // replace with your image
-                contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop // or ContentScale.FillBounds if you want stretching
-            )
-
-
-            Text("Feliz noche amor mio",
+            
+            Text("Main Screen after Log in",
                 Modifier.padding(80.dp),
                 fontSize = 35.sp,   // Medium size (you can adjust to 16.sp, 18.sp, etc.)
                 color= Color.White,
