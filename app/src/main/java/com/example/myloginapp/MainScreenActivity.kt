@@ -24,7 +24,7 @@ class MainScreenActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            
+
             Text("Main Screen after Log in",
                 Modifier.padding(80.dp),
                 fontSize = 35.sp,   // Medium size (you can adjust to 16.sp, 18.sp, etc.)

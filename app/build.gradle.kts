@@ -40,7 +40,12 @@ android {
     }
     buildFeatures {
         compose = true
+        mlModelBinding = true
     }
+
+    //added by jlemus for TFLite
+
+
 
 
 
@@ -65,6 +70,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.tensorflow.lite.support)
+    implementation(libs.tensorflow.lite.metadata)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -93,5 +100,17 @@ dependencies {
 
 
     implementation("com.google.android.gms:play-services-auth:21.2.0")
+
+
+    //tensorflow gradle
+    implementation("org.tensorflow:tensorflow-lite:2.17.0")
+    implementation("org.tensorflow:tensorflow-lite-support:0.5.0")
+    implementation("org.tensorflow:tensorflow-lite-metadata:0.5.0")
+
+    implementation("com.google.ai.edge.litert:litert:2.0.2")
+    implementation("com.google.ai.edge.litert:litert-support:1.4.0")
+    implementation("com.google.ai.edge.litert:litert-metadata:1.4.0")
+    implementation("com.google.ai.edge.litert:litert-api:1.4.0")
+
 
 }
