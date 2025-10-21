@@ -3,13 +3,12 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 
-
-    id("com.google.gms.google-services")
+    id("com.google.gms.google-services") // ✅ Required for Firebase
 
 }
 
 android {
-        namespace = "com.example.myloginapp"
+    namespace = "com.example.myloginapp"
     compileSdk = 36
 
     defaultConfig {
@@ -21,6 +20,12 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
+
+
+
+
+
 
     buildTypes {
         release {
@@ -41,22 +46,13 @@ android {
     buildFeatures {
         compose = true
         mlModelBinding = true
+        viewBinding = true
     }
 
     //added by jlemus for TFLite
-
-
-
-
-
-
-
-
-
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -72,6 +68,13 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.tensorflow.lite.support)
     implementation(libs.tensorflow.lite.metadata)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.compose.foundation.layout)
+
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -80,8 +83,10 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-    // Import the BoM for the Firebase platform
-    implementation(platform("com.google.firebase:firebase-bom:34.2.0"))
+
+
+
+
 
     // Add the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
@@ -96,21 +101,38 @@ dependencies {
     //added
     implementation("androidx.credentials:credentials:1.2.2")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.0")
-
-
-
     implementation("com.google.android.gms:play-services-auth:21.2.0")
 
 
-    //tensorflow gradle
-    implementation("org.tensorflow:tensorflow-lite:2.17.0")
-    implementation("org.tensorflow:tensorflow-lite-support:0.5.0")
-    implementation("org.tensorflow:tensorflow-lite-metadata:0.5.0")
 
-    implementation("com.google.ai.edge.litert:litert:2.0.2")
-    implementation("com.google.ai.edge.litert:litert-support:1.4.0")
-    implementation("com.google.ai.edge.litert:litert-metadata:1.4.0")
-    implementation("com.google.ai.edge.litert:litert-api:1.4.0")
+
+
+
+    implementation ("com.google.firebase:firebase-firestore-ktx")
+
+
+    // Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
+
+// Firebase libraries (no versions)
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-analytics-ktx")
+
+
+
+    //TensorF added by Jamieson
+        // TensorFlow Lite core runtime
+        implementation ("org.tensorflow:tensorflow-lite:2.14.0")
+
+        // TensorFlow Lite support library for TensorBuffer, ImageProcessor, etc.
+        implementation ("org.tensorflow:tensorflow-lite-support:0.4.4")
+
+        // TensorFlow Lite metadata (helps with model labels)
+        implementation ("org.tensorflow:tensorflow-lite-metadata:0.4.4")
+
+        // Optional (GPU or NNAPI delegates)
+        // implementation 'org.tensorflow:tensorflow-lite-gpu:2.14.0'
 
 
 }
