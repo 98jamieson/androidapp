@@ -1,11 +1,11 @@
 package com.example.myloginapp
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -18,19 +18,17 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class MainScreenActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,22 +44,32 @@ class MainScreenActivity : ComponentActivity() {
 
     @Composable
     fun WelcomeScreen() {
+        val context = LocalContext.current
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFF81D709)) // bright green background
-                .navigationBarsPadding(),       // 👈 avoids navigation bar area
-                contentAlignment = Alignment.Center
+                .navigationBarsPadding(),
+            contentAlignment = Alignment.Center
         ) {
-            // Main Text
+            // 🖼️ Background Image
+            Image(
+                painter = painterResource(id = R.drawable.mainimage), // your drawable image
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop // keeps proportions while filling screen
+            )
+
+            // 📝 Main Text
             Text(
                 text = "Bienvenido",
                 color = Color.White,
                 fontSize = 30.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.align(Alignment.Center)
             )
 
-            // Bottom Navigation Row
+            // 🔽 Bottom Navigation Row
             Row(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
@@ -70,55 +78,64 @@ class MainScreenActivity : ComponentActivity() {
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-
                 Icon(
-                    painter = painterResource(id = R.drawable.bars_solid_full),
-                    contentDescription = "Calendar",
+                    painter = painterResource(id = R.drawable.user_solid_full),
+                    contentDescription = "Profile",
                     tint = Color.White,
-                    modifier = Modifier.size(36.dp)
-                        .clickable{
-                            val intent = Intent(this@MainScreenActivity, ProfileScreenActivity::class.java)
-                            startActivity(intent)
-                            finish()
+                    modifier = Modifier
+                        .size(36.dp)
+                        .clickable {
+                            val intent = Intent(context, ProfileScreenActivity::class.java)
+                            context.startActivity(intent)
                         }
                 )
                 Icon(
-                    painter = painterResource(id = R.drawable.clock_rotate_left_solid_full),
-                    contentDescription = "Calendar",
+                    painter = painterResource(id = R.drawable.house_solid_full),
+                    contentDescription = "History",
                     tint = Color.White,
                     modifier = Modifier.size(36.dp)
                 )
                 Icon(
                     painter = painterResource(id = R.drawable.camera_solid_full),
-                    contentDescription = "Calendar",
+                    contentDescription = "Scan",
                     tint = Color.White,
-                    modifier = Modifier.size(36.dp)
-
-                        .clickable{
-                            val intent = Intent(this@MainScreenActivity, ScanScreenActivity::class.java)
-                            startActivity(intent)
-                            finish()
+                    modifier = Modifier
+                        .size(36.dp)
+                        .clickable {
+                            val intent = Intent(context, ScanScreenActivity::class.java)
+                            context.startActivity(intent)
                         }
-
-
                 )
                 Icon(
                     painter = painterResource(id = R.drawable.bowl_food_solid_full),
-                    contentDescription = "Calendar",
+                    contentDescription = "Meals",
                     tint = Color.White,
-                    modifier = Modifier.size(36.dp)
+                    modifier = Modifier
+                        .size(36.dp)
+                        .clickable {
+                            val intent = Intent(context, MealScreenActivity::class.java)
+                            context.startActivity(intent)
+                        }
                 )
                 Icon(
-                    painter = painterResource(id = R.drawable.calendar_solid_full),
-                    contentDescription = "Calendar",
+                    painter = painterResource(id = R.drawable.location_dot_solid_full),
+                    contentDescription = "Location",
                     tint = Color.White,
-                    modifier = Modifier.size(36.dp)
+                    modifier = Modifier
+                        .size(36.dp)
+                        .clickable {
+                            val gmmIntentUri = Uri.parse("geo:0,0?q=Scandinavia+Gym+Guatemala")
+                            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+                            mapIntent.resolveActivity(context.packageManager)?.let {
+                                context.startActivity(mapIntent)
+                            } ?: run {
+                                context.startActivity(Intent(Intent.ACTION_VIEW, gmmIntentUri))
+                            }
+                        }
                 )
-
             }
         }
     }
-
 
 
 

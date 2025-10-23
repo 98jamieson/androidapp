@@ -91,7 +91,7 @@ class ProfileScreenActivity : AppCompatActivity() {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFF81D709)), // Bright green background
+                .background(Color(0xFF000000)), // Bright green background
             contentAlignment = Alignment.Center
         ) {
             Column(
@@ -114,13 +114,13 @@ class ProfileScreenActivity : AppCompatActivity() {
                 Box(
                     modifier = Modifier
                         .size(140.dp)
-                        .background(Color.White, CircleShape),
+                        .background(Color.Black, CircleShape),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.user_solid_full),
                         contentDescription = "Calendar",
-                        tint = Color.Black,
+                        tint = Color.White,
                         modifier = Modifier.size(80.dp)
                     )
                 }

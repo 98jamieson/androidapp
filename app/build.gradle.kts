@@ -122,17 +122,44 @@ dependencies {
 
 
     //TensorF added by Jamieson
-        // TensorFlow Lite core runtime
-        implementation ("org.tensorflow:tensorflow-lite:2.14.0")
+    // TensorFlow Lite core runtime
+    implementation ("org.tensorflow:tensorflow-lite:2.14.0")
 
-        // TensorFlow Lite support library for TensorBuffer, ImageProcessor, etc.
-        implementation ("org.tensorflow:tensorflow-lite-support:0.4.4")
+    // TensorFlow Lite support library for TensorBuffer, ImageProcessor, etc.
+    implementation ("org.tensorflow:tensorflow-lite-support:0.4.4")
 
-        // TensorFlow Lite metadata (helps with model labels)
-        implementation ("org.tensorflow:tensorflow-lite-metadata:0.4.4")
+    // TensorFlow Lite metadata (helps with model labels)
+    implementation ("org.tensorflow:tensorflow-lite-metadata:0.4.4")
 
-        // Optional (GPU or NNAPI delegates)
-        // implementation 'org.tensorflow:tensorflow-lite-gpu:2.14.0'
+    // Optional (GPU or NNAPI delegates)
+    // implementation 'org.tensorflow:tensorflow-lite-gpu:2.14.0'
+
+    //Using the libraries for using apis
+
+    // Retrofit for HTTP requests
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+
+    // Converter for JSON <-> Kotlin data classes
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+
+    // Coroutines support (for async calls)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
+    implementation("io.coil-kt:coil-compose:2.6.0")
+
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.4")
+
+    // ML Kit Translation
+    implementation("com.google.mlkit:translate:17.0.1")
+    implementation("com.google.android.gms:play-services-mlkit-language-id:17.0.0")
+
+    //GoogleMaps
+    implementation("com.google.android.gms:play-services-maps:19.0.0")
+    implementation("com.google.maps.android:maps-compose:4.3.0")
+
+
+
+
 
 
 }
